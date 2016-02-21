@@ -1,4 +1,4 @@
-pimatic-plugin-template
+pimatic-efergy-e2
 =======================
 
 See the [development guide](http://pimatic.org/guide/development/required-skills-readings/) for
