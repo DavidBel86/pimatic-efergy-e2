@@ -1,22 +1,21 @@
-{ "name": "pimatic-plugin-template",
-  "description": "The plugin description",
-  "author": "Your Name <you@example.com> (http://your-website)",
-  "main": "my-plugin",
+{
+  "name": "pimatic-efergy-e2",
+  "description": "Plugin for Efergy E2 power meter",
+  "author": {
+    "name": "David Pirlot",
+    "email": "david.pirlot@gmail.com"
+  },
+  "main": "efergy-e2.coffee",
   "files": [
-    "my-plugin.coffee",
+    "doc",
+    "efergy-e2.coffee",
     "README.md",
-    "my-plugin-config-schema.coffee"
+    "device-config-schema.coffee",
+    "efergy-e2-config-schema.coffee"
   ],
   "version": "0.8.0",
-  "homepage": "http://your-plugin-website",
-  "private": true,
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/pimatic/pimatic-plugin-template.git"
-  },
-  "configSchema": "my-plugin-config-schema.coffee",
-  "dependencies": {
-  },
+  "configSchema": "efergy-e2-config-schema.coffee",
+  "dependencies": {},
   "peerDependencies": {
     "pimatic": "0.8.*"
   },
