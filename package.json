@@ -23,8 +23,8 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git://github.com/DavidBel86/pimatic-efergy-e2"
-},
+    "url": "git://github.com/DavidBel86/pimatic-efergy-e2.git"
+  },
   "engines": {
     "node": ">0.8.x",
     "npm": ">1.1.x"
