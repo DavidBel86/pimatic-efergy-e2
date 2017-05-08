@@ -13,7 +13,7 @@
     "device-config-schema.coffee",
     "efergy-e2-config-schema.coffee"
   ],
-  "version": "0.8.0",
+  "version": "0.8.1",
   "configSchema": "efergy-e2-config-schema.coffee",
   "dependencies": {},
   "peerDependencies": {
