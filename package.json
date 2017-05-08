@@ -19,6 +19,12 @@
   "peerDependencies": {
     "pimatic": "0.8.*"
   },
+  "homepage": "https://github.com/DavidBel86/pimatic-efergy-e2",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/DavidBel86/pimatic-efergy-e2"
+},
   "engines": {
     "node": ">0.8.x",
     "npm": ">1.1.x"
