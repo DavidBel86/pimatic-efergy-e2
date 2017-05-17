@@ -11,8 +11,8 @@ module.exports = (env) ->
       @config = config
       @framework = framework
       env.logger.debug("Launching rtl_433")
-      env.logger.debug @config.binPath, "-f #{@config.freq}", "-R 36","-q"
-      proc = spawn(@config.binPath,["-f #{@config.freq}", '-R 36','-q'])
+      env.logger.debug @config.binPath, "-f #{@config.freq}", "-R 36","-q", "-F csv"
+      proc = spawn(@config.binPath,["-f #{@config.freq}", '-R 36','-q','-F csv'])
 
       proc.stdout.setEncoding('utf8')
       proc.stderr.setEncoding('utf8')
@@ -36,15 +36,15 @@ module.exports = (env) ->
       env.logger.debug data
       datas = {};
       datas = data.split(",")
-
-      # "time","model","id","current","interval","battery","learn"
       if datas.length = 7 and datas[0] != "time"
+        result = {}
         result = {
             "sensorId": datas[2],
             "ampere": parseFloat datas[3],
             "battery": parseInt datas[5]
         }
         @emit('power', result)
+
 
   Promise.promisifyAll(rtl433.prototype)
 
@@ -58,7 +58,7 @@ module.exports = (env) ->
 
       @framework.deviceManager.registerDeviceClass("EfergyE2Sensor", {
         configDef: deviceConfigDef.EfergyE2Sensor, 
-        createCallback: (config, lastState) => return new EfergyE2Sensor(config, lastState,@rtl433)
+        createCallback: (config, lastState) => return new EfergyE2Sensor(config, lastState, @rtl433)
       })
 
   plugin = new EfergyE2()
@@ -66,10 +66,10 @@ module.exports = (env) ->
   class EfergyE2Sensor extends env.devices.Sensor
 
     constructor: (@config, lastState, @rtl433) ->
-      @name = config.name
-      @id = config.id
-      @sensorId = config.sensorId
-      @_voltage = parseFloat(config.volt)
+      @name = @config.name
+      @id = @config.id
+      @sensorId = @config.sensorId
+      @_voltage = parseFloat(@config.volt)
 
       @_ampere = lastState?.ampere?.value
       @_watt = lastState?.watt?.value

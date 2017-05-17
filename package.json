@@ -1,20 +1,20 @@
 {
-  "name": "pimatic-efergy-e2",
+  "name": "pimatic-efergye2",
   "description": "Plugin for Efergy E2 power meter",
   "author": {
     "name": "David Pirlot",
     "email": "david.pirlot@gmail.com"
   },
-  "main": "efergy-e2.coffee",
+  "main": "efergye2.coffee",
   "files": [
     "doc",
-    "efergy-e2.coffee",
+    "efergye2.coffee",
     "README.md",
     "device-config-schema.coffee",
-    "efergy-e2-config-schema.coffee"
+    "efergye2-config-schema.coffee"
   ],
   "version": "0.8.2",
-  "configSchema": "efergy-e2-config-schema.coffee",
+  "configSchema": "efergye2-config-schema.coffee",
   "dependencies": {},
   "peerDependencies": {
     "pimatic": "0.8.*"
