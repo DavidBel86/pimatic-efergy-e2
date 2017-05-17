@@ -24,7 +24,7 @@ module.exports = (env) ->
 
       proc.stderr.on('data',(data) =>
         lines = data.split(/(\r?\n)/g)
-        env.logger.error line for line in lines when line.trim() isnt ''
+        env.logger.warn line for line in lines when line.trim() isnt ''
       )
 
       proc.on('close',(code) =>
@@ -36,12 +36,13 @@ module.exports = (env) ->
       env.logger.debug data
       datas = {};
       datas = data.split(",")
-      if datas.length = 5
-        result = {}
+
+      # "time","model","id","current","interval","battery","learn"
+      if datas.length = 7 and datas[0] != "time"
         result = {
-            "sensorId": datas[0],
-            "ampere": parseFloat datas[1],
-            "battery": parseInt datas[3]
+            "sensorId": datas[2],
+            "ampere": parseFloat datas[3],
+            "battery": parseInt datas[5]
         }
         @emit('power', result)
 
