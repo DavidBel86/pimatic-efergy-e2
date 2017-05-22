@@ -5,21 +5,21 @@ module.exports = (env) ->
   exec = Promise.promisify(require("child_process").exec)
   spawn = require('child_process').spawn
   settled = (promise) -> Promise.settle([promise])
+  readline = require('readline');
 
   class rtl433 extends events.EventEmitter
     constructor: (framework,config) ->
       @config = config
       @framework = framework
       env.logger.debug("Launching rtl_433")
-      env.logger.debug @config.binPath, "-f #{@config.freq}", "-R 36","-q", "-F csv"
-      proc = spawn(@config.binPath,["-f #{@config.freq}", '-R 36','-q','-F csv'])
-
+      env.logger.debug @config.binPath, "-f #{@config.freq} -R 36 -F csv -q"
+      proc = spawn(@config.binPath,['-f', @config.freq, '-R', '36', '-F', 'csv', '-q'])
       proc.stdout.setEncoding('utf8')
       proc.stderr.setEncoding('utf8')
+      rl = readline.createInterface({ input: proc.stdout })
 
-      proc.stdout.on('data',(data) =>
-        lines = data.split(/(\r?\n)/g)
-        @_dataReceived(line) for line in lines when line.trim() isnt ''
+      rl.on('line', (line) => 
+        @_dataReceived(line)
       )
 
       proc.stderr.on('data',(data) =>
@@ -30,21 +30,22 @@ module.exports = (env) ->
       proc.on('close',(code) =>
         if code!=0
           env.logger.error "rtl_433 returned", code
+        rl.close()
       )
 
     _dataReceived: (data) ->
       env.logger.debug data
       datas = {};
       datas = data.split(",")
-      if datas.length = 7 and datas[0] != "time"
+      if datas.length == 7
         result = {}
         result = {
             "sensorId": datas[2],
             "ampere": parseFloat datas[3],
-            "battery": parseInt datas[5]
+            "battery": datas[5]=="LOW"
         }
+        env.logger.debug "Got measure (id:" + result.sensorId + ", amps: " + result.ampere + ", battery:" + result.battery + ")"
         @emit('power', result)
-
 
   Promise.promisifyAll(rtl433.prototype)
 
@@ -104,7 +105,7 @@ module.exports = (env) ->
           @emit "ampere", @_ampere
           @_watt = @_voltage*@_ampere
           @emit "watt", @_watt
-          @_lowBattery = result.battery<1
+          @_lowBattery = result.battery
           @emit "lowBattery", @_lowBattery
       )
       super()
