@@ -2,7 +2,7 @@
   "name": "pimatic-efergye2",
   "description": "Plugin for Efergy E2 power meter",
   "author": {
-    "name": "David Pirlot",
+    "name": "David Pirlot (DavidBel86)",
     "email": "david.pirlot@gmail.com"
   },
   "main": "efergye2.coffee",
@@ -13,11 +13,18 @@
     "device-config-schema.coffee",
     "efergye2-config-schema.coffee"
   ],
-  "version": "0.9.1",
+  "version": "0.9.5",
   "configSchema": "efergye2-config-schema.coffee",
-  "dependencies": {},
+  "dependencies": {
+    "cmake-js": "3.4.1"
+  },
   "peerDependencies": {
     "pimatic": "0.8.*"
+  },
+  "scripts": {
+    "preinstall": "rm -rf bin && rm -rf tmp && git clone https://github.com/merbanan/rtl_433.git tmp/rtl_433",
+    "install": "cmake-js compile",
+    "postinstall": "mkdir bin && cp build/tmp/rtl_433/src/rtl_433 ./bin && rm -rf build && rm -rf tmp"
   },
   "homepage": "https://github.com/DavidBel86/pimatic-efergy-e2",
   "private": false,
