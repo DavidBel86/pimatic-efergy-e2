@@ -12,8 +12,8 @@ module.exports = (env) ->
       @config = config
       @framework = framework
       env.logger.debug("Launching rtl_433")
-      env.logger.debug "./bin/rtl_433", "-f #{@config.freq} -R 36 -F csv -q -l #{@config.detectionLevel}"
-      proc = spawn("./bin/rtl_433",['-f', @config.freq, '-R', '36', '-F', 'csv', '-q', '-l', @config.detectionLevel])
+      env.logger.debug "#{__dirname}/bin/rtl_433", "-f #{@config.freq} -R 36 -F csv -q -l #{@config.detectionLevel}"
+      proc = spawn("#{__dirname}/bin/rtl_433",['-f', @config.freq, '-R', '36', '-F', 'csv', '-q', '-l', @config.detectionLevel])
       proc.stdout.setEncoding('utf8')
       proc.stderr.setEncoding('utf8')
       rl = readline.createInterface({ input: proc.stdout })
