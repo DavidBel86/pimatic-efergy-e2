@@ -46,15 +46,16 @@ endif()
 # Find build dependencies
 ########################################################################
 find_package(PkgConfig)
-find_package(LibRTLSDR)
+find_package(LIBRTLSDR)
 
 ########################################################################
 # Setup the include and linker paths
 ########################################################################
 include_directories(
     ${CMAKE_SOURCE_DIR}/tmp/rtl_433/include
-	${LIBRTLSDR_INCLUDE_DIRS}
+    ${LIBRTLSDR_INCLUDE_DIRS}
 )
+list(APPEND SDR_LIBRARIES ${LIBRTLSDR_LIBRARIES})
 
 ########################################################################
 # Create uninstall target
