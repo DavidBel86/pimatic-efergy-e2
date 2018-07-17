@@ -46,7 +46,7 @@ endif()
 # Find build dependencies
 ########################################################################
 find_package(PkgConfig)
-find_package(LIBRTLSDR)
+find_package(LibRTLSDR)
 
 ########################################################################
 # Setup the include and linker paths
