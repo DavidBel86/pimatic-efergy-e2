@@ -7,7 +7,7 @@
   },
   "main": "efergye2.coffee",
   "files": [
-    "doc",
+    "CMakeLists.txt",
     "efergye2.coffee",
     "README.md",
     "device-config-schema.coffee",
