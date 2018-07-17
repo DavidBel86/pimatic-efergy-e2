@@ -13,7 +13,7 @@
     "device-config-schema.coffee",
     "efergye2-config-schema.coffee"
   ],
-  "version": "0.9.6",
+  "version": "1.0.0",
   "configSchema": "efergye2-config-schema.coffee",
   "dependencies": {
     "cmake-js": "3.4.1"
