@@ -13,7 +13,7 @@
     "device-config-schema.coffee",
     "efergye2-config-schema.coffee"
   ],
-  "version": "1.0.3",
+  "version": "1.0.4",
   "configSchema": "efergye2-config-schema.coffee",
   "dependencies": {
     "cmake-js": "3.4.1"
@@ -22,7 +22,7 @@
     "pimatic": ">=0.8.0 <1.0.0"
   },
   "scripts": {
-    "preinstall": "rm -rf bin && rm -rf tmp && git clone https://github.com/merbanan/rtl_433.git tmp/rtl_433",
+    "preinstall": "rm -rf bin && rm -rf tmp && git clone https://github.com/davidbel86/rtl_433.git tmp/rtl_433",
     "install": "cmake-js compile",
     "postinstall": "mkdir bin && cp build/tmp/rtl_433/src/rtl_433 ./bin && rm -rf build && rm -rf tmp"
   },
