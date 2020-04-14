@@ -12,7 +12,7 @@ Compiling rtl_433 requires [rtl-sdr](http://sdr.osmocom.org/trac/wiki/rtl-sdr) t
 
 Depending on your system, you may also need to install the following libraries:
 
-    sudo apt-get install libtool libusb-1.0.0-dev librtlsdr-dev rtl-sdr
+    sudo apt-get install libtool libusb-1.0.0-dev librtlsdr-dev rtl-sdr cmake
 
 See [rtl_433 readme](https://github.com/merbanan/rtl_433/blob/master/README.md) for more details.
 
